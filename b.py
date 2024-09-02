@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-
+a=4
 b=5
 a+b
-=======
-a=4
->>>>>>> feature/branch-test
+
+
