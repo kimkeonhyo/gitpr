@@ -10,10 +10,11 @@ jobs:
         - name: Run scripts in server
           uses: appleboy/ssh-action@master
           with:
-            key: ${{ secrets.SSH_KEY }} # private key
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USER }} 
-            script: | 
+             host: ${{ secrets.REMOTE_IP }} # 인스턴스 IP
+             username: ${{ secrets.REMOTE_USER }} # 우분투 아이디
+             key: ${{ secrets.REMOTE_PRIVATE_KEY }} # ec2 instance pem key
+             port: ${{ secrets.REMOTE_SSH_PORT }} # 접속포트
+             script: | 
                 mkdir ${{ github.event.repository.name }}
                 cd ${{ vars.project_path }}/${{ github.event.repository.name }}
                 git pull origin main
