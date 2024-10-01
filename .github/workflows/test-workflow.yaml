@@ -1,0 +1,19 @@
+name: test-workflow
+on: 
+    workflow_dispatch:
+jobs:
+  SSH:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v3
+        - name: Run scripts in server
+          uses: appleboy/ssh-action@master
+          with:
+            key: ${{ secrets.SSH_KEY }} # private key
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USER }} 
+            script: | 
+                mkdir ${{ github.event.repository.name }}
+                cd ${{ vars.project_path }}/${{ github.event.repository.name }}
+                git pull origin main
